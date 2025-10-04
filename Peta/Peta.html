@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Peta - Aquaclov</title>
+  <!-- Link ke Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Link CSS utama -->
+  <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="/css/peta.css" />
+   <!--Icon website -->
+  <link rel="icon" type="image/x-icon" href="/Assets/img/Icon-OPSI.png">
+</head>
+<body>
+
+  <!-- Loading overlay -->
+  <div id="loading">
+    <div class="wave-loader">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-left">
+      <img src="../Assets/img/CLAVA_no background.png" alt="Logo Aquaclov" />
+      <span class="site-title">Aquaclov</span>
+    </div>
+    <nav class="header-nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../Data/Data.html" class="nav-link">Data</a>
+      <a href="../Peta/Peta.html" class="nav-link active">Peta</a>
+      <a href="../Publikasi/Publikasi.html" class="nav-link">Publikasi</a>
+      <a href="../Pelaporan/Pelaporan.html" class="nav-link">Pelaporan</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Halaman Peta</h2>
+    <p>Ini adalah halaman khusus untuk Peta.</p>
+  </main>
+
+  <script>
+    // Loading overlay hilang setelah halaman siap dan animasi fade out 2 detik
+    window.onload = () => {
+      const loading = document.getElementById("loading");
+      if (loading) {
+        loading.style.animation = "fadeOut 2s forwards";
+        setTimeout(() => {
+          loading.style.display = "none";
+        }, 2000);
+      }
+    };
+  </script>
+</body>
+</html>

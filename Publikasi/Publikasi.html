@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publikasi - Aquaclov</title>
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Icon website -->
+  <link rel="icon" type="image/x-icon" href="/Assets/img/Icon-OPSI.png" />
+  <style>
+    /* CSS Variables untuk konsistensi warna */
+    :root {
+      --header-height: 64px;
+      --header-bg: #84AE92;
+
+      /* Gradient hero background hanya 3 warna */
+      --grad1: #B9D4AA;
+      --grad2: #84AE92;
+      --grad3: #5A827E;
+
+      --wave-color1: #A7D8C9;
+      --wave-color2: #4DB6AC;
+      --wave-color3: #00796B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      padding-top: var(--header-height);
+      color: #112;
+      background: #ECECBB;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      background: linear-gradient(to bottom, var(--grad1), var(--grad2));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+      color: #083935;
+      transition:
+        background-color 0.5s ease,
+        box-shadow 0.5s ease,
+        color 0.5s ease,
+        transform 0.3s ease,
+        opacity 0.5s ease;
+      box-shadow: none;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    header.scrolled {
+      background: var(--header-bg);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      color: #fff;
+      animation: slideFadeIn 0.5s ease forwards;
+    }
+
+    @keyframes slideFadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-left img {
+      height: 40px;
+      width: auto;
+      display: block;
+      filter: brightness(60%);
+      transition: filter 0.5s ease;
+    }
+    header.scrolled .header-left img {
+      filter: brightness(100%);
+    }
+    .site-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: inherit;
+      transition: color 0.5s ease;
+    }
+
+    nav.header-nav {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    nav.header-nav a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.3s ease, transform 0.15s ease;
+    }
+    nav.header-nav a:hover,
+    nav.header-nav a.active {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Loading */
+    #loading {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .wave-loader {
+      position: relative;
+      width: 80px;
+      height: 40px;
+      overflow: visible;
+    }
+    .wave-loader .wave {
+      position: absolute;
+      bottom: 0;
+      width: 20px;
+      height: 20px;
+      background: #4CAF50;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: waveMoveLoading 1.2s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+    .wave-loader .wave:nth-child(1) { left: 0; animation-delay: 0s; }
+    .wave-loader .wave:nth-child(2) { left: 25px; animation-delay: 0.2s; }
+    .wave-loader .wave:nth-child(3) { left: 50px; animation-delay: 0.4s; }
+    @keyframes waveMoveLoading {
+      0%, 100% {
+        transform: translateY(0) scaleY(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-15px) scaleY(1.3);
+        opacity: 0.6;
+      }
+    }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
+    /* Main content styling */
+    main {
+      padding: 40px 20px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      color: #000000;
+    }
+
+    main h2 {
+      font-weight: 700;
+      margin-bottom: 12px;
+      border-bottom: 3px solid var(--wave-color3);
+      padding-bottom: 6px;
+      color: #000000;
+    }
+    main p {
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Publikasi grid item - Modifikasi untuk kelompok dengan slider */
+    .publikasi-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+      opacity: 0;
+      transform: translateX(50px); /* Efek geser kanan awal */
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .publikasi-item.visible {
+      opacity: 1;
+      transform: translateX(0); /* Geser ke posisi normal */
+    }
+
+    .publikasi-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.2);
+    }
+
+    /* Carousel customization */
+    .carousel-inner img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      border-radius: 0 0 12px 12px;
+      display: block;
+    }
+
+    .carousel-item:hover img {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 5%;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+      opacity: 1;
+    }
+
+    .card-header {
+      background: linear-gradient(to right, var(--grad1), var(--grad2));
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 12px 12px 0 0;
+      padding: 10px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .carousel-inner img {
+        height: 180px;
+      }
+    }
+
+    /* Grid untuk 4 kolom di large screen, 2 di medium, 1 di small */
+    #publikasi-grid .col-lg-3 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading overlay -->
+  <div id="loading">
+    <div class="wave-loader">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+  </div>
+
+  <header id="header">
+    <div class="header-left">
+      <img src="../Assets/img/CLAVA_no background.png" alt="Logo Aquaclov" />
+      <span class="site-title">Aquaclov</span>
+    </div>
+    <nav class="header-nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../Data/Data.html" class="nav-link">Data</a>
+      <a href="../Peta/Peta.html" class="nav-link">Peta</a>
+      <a href="../Publikasi/Publikasi.html" class="nav-link active">Publikasi</a>
+      <a href="../Pelaporan/Pelaporan.html" class="nav-link">Pelaporan</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Halaman Publikasi</h2>
+    <p>Ini adalah halaman khusus untuk Publikasi yang dikelompokkan berdasarkan kategori, dengan efek geser kanan dan slider gambar di setiap kotak.</p>
+
+    <div class="container my-5">
+      <div class="row g-4" id="publikasi-grid">
+        <!-- Item publikasi akan dimasukkan di sini secara dinamis -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Loading overlay hilang setelah halaman siap dan animasi fade out 2 detik
+    window.onload = () => {
+      const loading = document.getElementById("loading");
+      if (loading) {
+        loading.style.animation = "fadeOut 2s forwards";
+        setTimeout(() => {
+          loading.style.display = "none";
+        }, 2000);
+      }
+    };
+
+    // Navbar scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Data publikasi dikelompokkan - Sesuaikan path gambar dengan aset Anda
+    // Asumsi setiap kategori punya 3 gambar; ganti path sesuai file gambar Anda
+    const publikasiData = [
+      {
+        title: "Foto Sampling",
+        images: [
+          "../Assets/img/sampling1.jpg",  // Ganti dengan path gambar sampling 1
+          "../Assets/img/sampling2.jpg",  // Ganti dengan path gambar sampling 2
+          "../Assets/img/sampling3.jpg"   // Ganti dengan path gambar sampling 3
+        ]
+      },
+      {
+        title: "Foto Bersama BBWS",
+        images: [
+          "../Assets/img/bbws1.jpg",      // Ganti dengan path gambar BBWS 1
+          "../Assets/img/bbws2.jpg",      // Ganti dengan path gambar BBWS 2
+          "../Assets/img/bbws3.jpg"       // Ganti dengan path gambar BBWS 3
+        ]
+      },
+      {
+        title: "Foto IOT",
+        images: [
+          "../Assets/img/iot1.jpg",       // Ganti dengan path gambar IOT 1
+          "../Assets/img/iot2.jpg",       // Ganti dengan path gambar IOT 2
+          "../Assets/img/iot3.jpg"        // Ganti dengan path gambar IOT 3
+        ]
+      },
+      {
+        title: "Foto Pembuatan IOT",
+        images: [
+          "../Assets/img/pembuatan_iot1.jpg",  // Ganti dengan path gambar pembuatan IOT 1
+          "../Assets/img/pembuatan_iot2.jpg",  // Ganti dengan path gambar pembuatan IOT 2
+          "../Assets/img/pembuatan_iot3.jpg"   // Ganti dengan path gambar pembuatan IOT 3
+        ]
+      }
+    ];
+
+    const grid = document.getElementById("publikasi-grid");
+
+    // Generate carousel untuk setiap kategori
+    publikasiData.forEach((kategori, index) => {
+      const col = document.createElement("div");
+      col.className = "col-lg-3 col-md-6 col-sm-12";  // 4 kolom di large, 2 di medium, 1 di small
+
+      // ID unik untuk carousel
+      const carouselId = `carousel-${index}`;
+
+      // Buat inner HTML untuk carousel
+      let carouselInner = '';
+      kategori.images.forEach((imgSrc, imgIndex) => {
+        const activeClass = imgIndex === 0 ? ' active' : '';
+        carouselInner += `
+          <div class="carousel-item${activeClass}">
+            <img src="${imgSrc}" alt="${kategori.title} - Gambar ${imgIndex + 1}" loading="lazy" />
+          </div>
+        `;
+      });
+
+      col.innerHTML = `
+        <div class="publikasi-item card shadow-sm" tabindex="0" aria-label="${kategori.title}">
+          <div class="card-header">
+            ${kategori.title}
+          </div>
+          <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              ${carouselInner}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      grid.appendChild(col);
+    });
+
+    // Efek animasi geser kanan saat scroll (menggunakan IntersectionObserver)
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);  // Hanya animasi sekali
+        }
+      });
+    }, observerOptions);
+
+    // Observe semua publikasi-item
+    document.querySelectorAll('.publikasi-item').forEach(item => {
+      observer.observe(item);
+    });
+  </script>
+</body>
+</html>

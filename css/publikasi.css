@@ -1,0 +1,84 @@
+:root {
+  --header-height: 64px;
+  --header-bg: #2c3e50;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #ECECBB;
+  color: #333;
+  padding-top: var(--header-height);
+}
+
+/* Header (tetap konsisten) */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-height);
+  background: var(--header-bg);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-left img {
+  height: 40px;
+}
+
+nav.header-nav {
+  display: flex;
+  gap: 14px;
+}
+
+nav.header-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+nav.header-nav a.active,
+nav.header-nav a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Konten Halaman Data */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+main h1 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Footer */
+footer {
+  background: var(--header-bg);
+  color: white;
+  text-align: center;
+  padding: 12px;
+  margin-top: 40px;
+  border-top: 4px solid #1abc9c;
+}

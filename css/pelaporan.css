@@ -1,0 +1,128 @@
+:root {
+  --header-height: 64px;
+  --footer-height: 48px;
+  --header-bg: #84AE92;
+
+  --grad1: #B9D4AA;
+  --grad2: #84AE92;
+  --grad3: #5A827E;
+
+  --wave-color1: #A7D8C9;
+  --wave-color2: #4DB6AC;
+  --wave-color3: #00796B;
+}
+
+/* Integrasi Form dengan Bootstrap dan Custom CSS untuk Pelaporan */
+.report-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.info-complaint {
+  background-color: #e9ecef;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  border-left: 4px solid #2c3e50;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.required::after {
+  content: " *";
+  color: #dc3545;
+}
+
+.attachment-container {
+  border: 2px dashed #dee2e6;
+  padding: 25px;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.attachment-container:hover {
+  background-color: #e9ecef;
+}
+
+.privacy-options {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+}
+
+.btn-submit:hover {
+  background-color: #1a252f;
+  border-color: #1a252f;
+}
+
+.info-version {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #6c757d;
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Responsif untuk mobile (spesifik pelaporan) */
+@media (max-width: 768px) {
+  .privacy-options {
+    flex-direction: column;
+  }
+}
+
+/* Override Bootstrap untuk konsistensi dengan tema pondasi */
+.form-control:focus {
+  border-color: #2c3e50;
+  box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+}
+
+.form-select:focus {
+  border-color: #2c3e50;
+  box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+}
+
+.btn-primary {
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+}
+
+.btn-primary:hover {
+  background-color: #1a252f;
+  border-color: #1a252f;
+}
+
+/* Override background untuk halaman pelaporan */
+body {
+background-color: #ECECBB !important;
+}
